@@ -119,11 +119,37 @@ html{background:linear-gradient(-20deg,#e0c3fc 0%,#fff0f3 100%);font-family:inte
 </script>
 <script crossorigin='anonymous' src='https://code.jquery.com/jquery-3.6.0.slim.min.js'></script>
 <div class='no-items section' id='thedemontuan.xyz'></div>
-<audio
-  src="https://data.chiasenhac.com/down2/2240/0/2239104-b99d3a75/128/RAVE%20-%20Dxrk.mp3"
-  autoplay controls loop>
-  Your browser does not support the <code>audio</code> element.
-</audio>
+<script>
+   window.addEventListener('load', () => document.querySelector('.code-container').appendChild(document.createTextNode(document.querySelector('.source-code').innerText)));
+</script>
+<script class="source-code">
+			window.addEventListener('load', () => {
+				// noinspection JSUnresolvedVariable
+				let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+				let xhr = new XMLHttpRequest();
+				xhr.open('GET', 'https://data.chiasenhac.com/down2/2240/0/2239104-b99d3a75/128/RAVE%20-%20Dxrk.mp3');
+				xhr.responseType = 'arraybuffer';
+				xhr.addEventListener('load', () => {
+					let playsound = (audioBuffer) => {
+						let source = audioCtx.createBufferSource();
+						source.buffer = audioBuffer;
+						source.connect(audioCtx.destination);
+						source.loop = false;
+						source.start();
+
+						setTimeout(function () {
+							let t = document.createElement('p');
+							t.appendChild(document.createTextNode((new Date()).toLocaleString() + ': Sound played'));
+							document.querySelector('.output').appendChild(t);
+							playsound(audioBuffer);
+						}, 1000 + Math.random()*2500);
+					};
+
+					audioCtx.decodeAudioData(xhr.response).then(playsound);
+				});
+				xhr.send();
+			});
+</script>		
 <!--<iframe allow="autoplay" frameborder="no" height="300" scrolling="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1235551306&amp;color=%23ff5500&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true" width="100%"></iframe>
 	<!--<head></head>-->
 	<!--<body></body>-->
