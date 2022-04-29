@@ -16,6 +16,23 @@ html{font-family:inter,sans-serif;margin:0;padding:0}body{background-image: url(
 @media only screen and (max-width:425px){#root{display:block}#main{top:0;left:0;border-radius:0;width:100%;margin:0;margin-right:0}#cover-image{border-top-left-radius:0;border-top-right-radius:0;max-width:100vw}.container{width:90%}}@media only screen and (max-width:350px) and (min-width:150px){#name,#first-name{font-size:22px}#nickname{font-size:16px}.skill-item{font-size:12px}}
 </style>
 <style>
+/* Pop-Up Box (Style 2) */
+.popSc{position:fixed;top:0;bottom:0;left:0;right:0;padding:20px;background:rgba(255, 255, 255, 0.1);z-index:99999;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;justify-content:center;align-items:center}
+.popSc.hidden{display:none}
+.popSc .popBo{position:relative;background:rgba(255, 255, 255, 0.8);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);max-width:400px;display:flex;justify-content:center;align-items:center;flex-direction:column;padding:30px;border-radius:20px;box-shadow:0 5px 25px rgb(0 0 0 / 20%)}
+.popSc .popBo svg{display:block;width:50px;height:50px;fill:none !important;stroke:#08102b;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5}
+.popSc .popBo h2{margin:10px 0 15px 0;font-size:1.2rem;font-weight:800;color:#08102b}
+.popSc .popBo p{margin:0;line-height:1.7em;font-size:0.9rem;color:#08102b}
+.popSc{animation:popupBlur .3s ease-in; -webkit-animation:popupBlur .3s}
+.popSc >*{animation:popupScale .3s ease-in; -webkit-animation:popupScale .3s}
+.darkMode .popSc{background:rgba(0, 0, 0, 0.1)}
+.darkMode .popSc .popBo{background:rgba(50, 50, 50, 0.8)}
+.darkMode .popSc .popBo svg{stroke:#fefefe}
+.darkMode .popSc .popBo p, .darkMode .popSc .popBo h2{color:#fefefe}
+@keyframes popupBlur {from{opacity:0}to{opacity:1}}
+@-webkit-keyframes popupBlur{from{opacity:0}to{opacity:1}}
+@keyframes popupScale{from{transform:scale(0);animation-timing-function:ease-in;opacity:0}to{transform:scale(1);opacity:1}}
+@-webkit-keyframes popupScale{from{-webkit-transform:scale(0);-webkit-animation-timing-function: ease-in;opacity:0}to{-webkit-transform:scale(1);opacity:1}}
 /* ===== Google Font Import - Poppins ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 .containerr{
@@ -183,6 +200,14 @@ html{font-family:inter,sans-serif;margin:0;padding:0}body{background-image: url(
         setInterval(textLoad, 24000);
 </script>  
 <script crossorigin='anonymous' src='https://code.jquery.com/jquery-3.6.0.slim.min.js'></script>
+<div class='popSc hidden' id='antiAdBlock'>
+<div class='popBo'>
+<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><circle cx='12' cy='12' r='10'/><line x1='12' x2='12' y1='8' y2='12'/><line x1='12' x2='12.01' y1='16' y2='16'/></svg>
+<h2>Ad-Blocker Detected!</h2>
+<p>Sorry, We are not son of Bill Gates.<br/>We detected that you have activated Ad-Blocker.<br/>Please consider supporting us by disabling your Ad-Blocker, Because Ads are kinda Red Bull to us. Let them give us wings money.<br/>Thank you!</p>
+</div>
+</div>
+<script>/*<![CDATA[*/ /* Anti Ad-Blocker Script */ var lazyAnti=!1;window.addEventListener("scroll",function(){(0!=document.documentElement.scrollTop&&!1===lazyAnti||0!=document.body.scrollTop&&!1===lazyAnti)&&(!function(){var antiAdBlock=document.querySelector("#antiAdBlock");var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";e.onerror=function(){if(antiAdBlock!=null){antiAdBlock.classList.remove("hidden");window.lazyAnti=!0}};var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(e,a)}(),lazyAnti=!0)},!0); /*]]>*/</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9678984470427661"
      crossorigin="anonymous"></script>
 <div class='no-items section' id='thedemontuan.xyz'></div>
